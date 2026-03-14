@@ -1,1 +1,50 @@
 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>에픽게임즈 런처</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>EPIC CLONE</h2>
+        <input type="text" id="search" placeholder="게임 검색..." onkeyup="filterGames()">
+        <nav>
+            <p>🏠 라이브러리</p>
+            <p>🛍️ 스토어</p>
+        </nav>
+        <button class="add-btn" onclick="addNewGame()">+ 게임 추가</button>
+    </div>
+
+    <div class="main">
+        <div class="banner">
+            <h1>FORTNITE</h1>
+            <button class="play-btn">실행</button>
+        </div>
+        <div class="grid" id="gameGrid">
+            <div class="card" data-name="포트나이트">
+                <img src="fortnite.jpg">
+                <p>포트나이트</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function filterGames() {
+            let val = document.getElementById('search').value.toLowerCase();
+            let cards = document.getElementsByClassName('card');
+            for (let card of cards) {
+                card.style.display = card.getAttribute('data-name').includes(val) ? "block" : "none";
+            }
+        }
+        function addNewGame() {
+            let name = prompt("게임 이름을 입력하세요:");
+            if(name) {
+                let grid = document.getElementById('gameGrid');
+                grid.innerHTML += `<div class="card" data-name="${name}"><img src="unreal.png"><p>${name}</p></div>`;
+            }
+        }
+    </script>
+</body>
+</html>
